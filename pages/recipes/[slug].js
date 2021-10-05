@@ -2,6 +2,7 @@
 import { createClient } from 'contentful';
 import Image from "next/image";
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import Skeleton from '../../components/Skeleton';
 
 //find paths or routes of the specific pages generated
 
@@ -25,7 +26,7 @@ export const getStaticPaths = async() =>{
 
   return {
     paths,
-    fallback: false    // if path/slug that doesnot exists is visited, it will show a 404 page instead of fallback page
+    fallback: true    // when value= false, if path/slug that doesnot exists is visited, it will show a 404 page instead of fallback page
   }
 }
 
@@ -46,6 +47,7 @@ export async function getStaticProps({ params }) {
 
 
 export default function RecipeDetails({ recipe }) {
+  if(!recipe) return <Skeleton/>
   const { featuredImage, title, cookingTime, ingredients, method} = recipe.fields;
   return (
     <div>
