@@ -1,3 +1,5 @@
+//tried removing fallback
+
 export default function Skeleton() {
     return (
         <div className="skeleton">
