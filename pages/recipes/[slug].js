@@ -26,7 +26,7 @@ export const getStaticPaths = async() =>{
 
   return {
     paths,
-    fallback: false    // when value= false, if path/slug that doesnot exists is visited, it will show a 404 page instead of fallback page
+    fallback: true    // when value= false, if path/slug that doesnot exists is visited, it will show a 404 page instead of fallback page
   }
 }
 
@@ -47,7 +47,7 @@ export async function getStaticProps({ params }) {
 
 
 export default function RecipeDetails({ recipe }) {
-  // if(!recipe) return <Skeleton/>
+  if(!recipe) return <Skeleton/>
   
   const { featuredImage, title, cookingTime, ingredients, method} = recipe.fields;
   return (
