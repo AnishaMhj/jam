@@ -38,6 +38,16 @@ export async function getStaticProps({ params }) {
     'fields.slug': params.slug
   })
 
+  // function to redirect to homepage when the visited page doesnot exist
+  if (!items.length) {
+   return{
+    redirect: {
+      destination: '/',
+      permanent: false
+    }
+   }
+  }
+
   return{
     props: { recipe: items[0] },
     revalidate: 1
